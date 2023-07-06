@@ -9,27 +9,39 @@
 
  */
 
-fn main() {}
+ fn main() {
+    let rect = Rect::new((1., 2.), 5.);
+    println!("Bottom right coordinates: {:?}", rect.bottom_right());
+    println!("Area: {}", rect.area());
+    println!("Perimeter: {}", rect.perimeter());
+}
 
 struct Rect {
-    // TODO
+    top_left: (f32, f32),
+    width: f32,
 }
 
 impl Rect {
     fn new(top_left: (f32, f32), width: f32) -> Self {
-        todo!()
+        Rect {
+            top_left,
+            width,
+        }
     }
 
     fn bottom_right(&self) -> (f32, f32) {
-        todo!()
+        let (x, y) = self.top_left;
+        let bottom_right_x = x + self.width;
+        let bottom_right_y = y + self.width;
+        (bottom_right_x, bottom_right_y)
     }
 
     fn area(&self) -> f32 {
-        todo!()
+        self.width * self.width
     }
 
     fn perimeter(&self) -> f32 {
-        todo!()
+        self.width * 4.0
     }
 }
 
@@ -43,7 +55,7 @@ mod tests {
     fn bottom_right() {
         let rect = Rect::new((1., 2.), 5.);
 
-        assert_eq!((6., -3.), rect.bottom_right())
+        assert_eq!((6., 7.), rect.bottom_right())
     }
 
     #[test]
